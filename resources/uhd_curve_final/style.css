@@ -1,0 +1,94 @@
+body{
+margin:0;
+overflow:hidden;
+}
+
+.icon{
+position:absolute;
+transform:translate(-50%,-50%);
+width:40px;
+height:40px;
+border-radius:50%;
+
+/* ⭐ พื้นหลังดำเหมือน HUD RDR2 */
+background: rgba(0,0,0,0.75);
+}
+
+.icon img{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:18px;
+filter:brightness(0) invert(1);
+}
+
+svg{
+width:40px;
+height:40px;
+transform:rotate(-90deg);
+}
+
+.bg{
+fill:none;
+stroke:#777;       /* ส่วนที่หาย */
+stroke-width:3;
+opacity:0.5;
+}
+
+.fg{
+fill:none;
+stroke:#fff;       /* เปอร์เซนต์ */
+stroke-width:3;
+stroke-linecap:round;
+transition:0.2s;
+}body{
+margin:0;
+overflow:hidden;
+}
+
+.icon{
+position:absolute;
+transform:translate(-50%,-50%);
+width:40px;
+height:40px;
+border-radius:50%;
+
+/* ⭐ พื้นหลังดำเหมือน HUD RDR2 */
+background: rgba(0,0,0,0.75);
+}
+
+.icon img{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:18px;
+filter:brightness(0) invert(1);
+}
+
+svg{
+width:40px;
+height:40px;
+transform:rotate(-90deg);
+}
+
+.bg{
+fill:none;
+stroke:#777;       /* ส่วนที่หาย */
+stroke-width:3;
+opacity:0.5;
+}
+
+.fg{
+fill:none;
+stroke:#fff;       /* เปอร์เซนต์ */
+stroke-width:3;
+stroke-linecap:round;
+transition:0.2s;
+}
+
+#hud{
+pointer-events:none;
+z-index:5;
+}

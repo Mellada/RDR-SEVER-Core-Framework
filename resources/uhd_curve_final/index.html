@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="hud">
+
+<div class="icon" id="brain">
+<svg viewBox="0 0 36 36">
+<circle class="bg" cx="18" cy="18" r="15"/>
+<circle class="fg" cx="18" cy="18" r="15"/>
+</svg>
+<img src="img/brain.png">
+</div>
+
+<div class="icon" id="apple">
+<svg viewBox="0 0 36 36">
+<circle class="bg" cx="18" cy="18" r="15"/>
+<circle class="fg" cx="18" cy="18" r="15"/>
+</svg>
+<img src="img/apple.png">
+</div>
+
+<div class="icon" id="water">
+<svg viewBox="0 0 36 36">
+<circle class="bg" cx="18" cy="18" r="15"/>
+<circle class="fg" cx="18" cy="18" r="15"/>
+</svg>
+<img src="img/water.png">
+</div>
+
+<div class="icon" id="temp">
+<svg viewBox="0 0 36 36">
+<circle class="bg" cx="18" cy="18" r="15"/>
+<circle class="fg" cx="18" cy="18" r="15"/>
+</svg>
+<img src="img/hot.png">
+</div>
+
+</div>
+
+<script>
+
+const FULL = 94
+
+window.addEventListener('message',function(e){
+
+if(e.data.type=="update"){
+
+const d = e.data.data
+
+setCircle("brain",-60,d.stress)
+setCircle("apple",-25,d.food)
+setCircle("water",10,d.water)
+setCircle("temp",45,d.temp,true)   // ⭐ temp ส่ง true
+
+}
+})
+
+function setCircle(id,angle,val,isTemp){
+
+const el = document.getElementById(id)
+if(!el) return
+
+const cx = 245      // ขยับ-เข้า minimap edge
+const cy = window.innerHeight - 155    //ควบคุมตำแหน่ง “แนวตั้ง”
+const r  = 88     // วางออกไปด้านข้าง
+
+const rad = angle*Math.PI/180
+
+el.style.left = (cx + Math.cos(rad)*r)+"px"
+el.style.top  = (cy + Math.sin(rad)*r)+"px"
+
+const fg = el.querySelector(".fg")
+
+const pct = Math.max(0,Math.min(100,val))
+const dash = FULL*(pct/100)
+
+fg.style.strokeDasharray = dash+" "+FULL
+
+// ⭐ เปลี่ยนสีเฉพาะ temp
+if(isTemp){
+
+    if(val >= 35){
+        fg.style.stroke = "#ff4b4b"   // 🔴 ร้อน
+    }
+    else if(val <= -5){
+        fg.style.stroke = "#5bbcff"   // 🔵 หนาว
+    }
+    else{
+        fg.style.stroke = "#ffffff"   // ⚪ ปกติ
+    }
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
